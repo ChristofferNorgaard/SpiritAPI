@@ -1,13 +1,13 @@
 version: "3.8"
 services:
   app:
-    image: 979b437610c1
+    image: ghcr.io/christoffernorgaard/spiritapi:main
     volumes:
       - type: bind
-        source: ./test.csv
+        source: ./test.csv #location of mounted data
         target: /files/data.csv
     environment:
-      - USERNAME=tester
-      - PASSWORD=testing
+      - USERNAME=changeme #password of the spirit user
+      - PASSWORD=changeme #user
     ports:
-      - "3030:80"
+      - "3030:80" #port on which it servers
