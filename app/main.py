@@ -27,7 +27,7 @@ class Zeton(BaseModel):
     zeton: str
 
 class PridobiPodatki(BaseModel):
-    token: str
+    zeton: str
     maticna: int
     davcna: str | None = None
     naziv: str | None = None
@@ -54,7 +54,7 @@ def prijava(prj: Prijava) -> Zeton:
 
 @app.post("/Dobavitelj/PridobiPodatke")
 def read_item(podatki: PridobiPodatki) -> Podatki:
-    if not (podatki.token == token and (datetime.datetime.now() - tokenCreated).total_seconds() < 3600):
+    if not (podatki.zeton == token and (datetime.datetime.now() - tokenCreated).total_seconds() < 3600):
         raise HTTPException(status_code=401, detail="Wrong or expired token")
     data = csv[(csv.maticna == podatki.maticna)&(csv.leto == podatki.leto)&(csv.mesec == podatki.mesec)&(csv.energent == podatki.energent)]
     print(len(data))
