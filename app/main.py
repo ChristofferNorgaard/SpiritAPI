@@ -64,4 +64,4 @@ def read_item(podatki: PridobiPodatki) -> Podatki:
             "povprecnaCenaNaEnoto": float(data.iloc[0]["povprecnaCenaNaEnoto"])
         }
     else:
-        HTTPException(status_code=404, detail="No such data in database")
+        raise HTTPException(status_code=404, detail="No such data in database")
